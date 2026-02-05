@@ -5,7 +5,7 @@ class FruitCard extends HTMLElement {
   }
   
   static get observedAttributes() {
-    return ['name', 'price', 'image'];
+    return ['name', 'price', 'image', 'id'];
   }
   
   attributeChangedCallback(name, oldValue, newValue) {
@@ -18,10 +18,20 @@ class FruitCard extends HTMLElement {
     this.render();
   }
   
+  goToDetail() {
+    const id = this.getAttribute('id') || '';
+    if (id && window.router) {
+      window.router.navigate(`/detail/${id}`);
+    } else {
+      console.warn('❌ No se puede navegar: ID o router no disponible');
+    }
+  }
+  
   render() {
     const name = this.getAttribute('name') || '';
     const price = this.getAttribute('price') || '0';
     const image = this.getAttribute('image') || '';
+    const id = this.getAttribute('id') || '';
     
     this.shadowRoot.innerHTML = `
       <style>
@@ -33,11 +43,16 @@ class FruitCard extends HTMLElement {
           box-shadow: 0 4px 6px rgba(0,0,0,0.1);
           transition: transform 0.3s ease, box-shadow 0.3s ease;
           background: #f5f5f5;
+          cursor: pointer;
         }
         
         .card:hover {
           transform: translateY(-4px);
           box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+        
+        .card:active {
+          transform: translateY(-2px);
         }
         
         .card-image {
@@ -72,7 +87,7 @@ class FruitCard extends HTMLElement {
           font-size: 0.9rem;
         }
       </style>
-      <div class="card">
+      <div class="card" onclick="this.getRootNode().host.goToDetail()">
         <img class="card-image" src="${image}" alt="${name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2RkZCIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE0IiBmaWxsPSIjOTk5Ij5JbWFnZW4gbm8gZGlzcG9uaWJsZTwvdGV4dD48L3N2Zz4='">
         <div class="fruit-name">${name}</div>
         <div class="fruit-price">€${price}</div>
