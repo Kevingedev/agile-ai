@@ -29,8 +29,16 @@
 ## Tareas
 | Código | Nombre |
 |--------|--------|
-| TK-002-01 | ... |
-| TK-002-02 | ... |
+| TK-002-01 | Hacer que el componente cardFruta redireccione a la vista de detalle |
+| TK-002-02 | Pasar id del item seleccionado por URL |
+| TK-002-03 | Crear vista de detalle de fruta |
+| TK-002-04 | Obtener el id de la URL para conecta con los datos de la API |
+| TK-002-05 | Renderizar dinamicamente detalles de la fruta seleccionada |
+| TK-002-06 | Crear breadcrumb en la pagina de detalle para volver al catalogo |
 
 
-
+### Detalles
+- Estilo Glassmorphism
+- Moderno y Minimalista
+- Responsive
+- Color tono principal Verde
