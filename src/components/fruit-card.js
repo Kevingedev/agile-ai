@@ -5,7 +5,7 @@ class FruitCard extends HTMLElement {
   }
   
   static get observedAttributes() {
-    return ['name', 'price', 'image'];
+    return ['name', 'price', 'image', 'id'];
   }
   
   attributeChangedCallback(name, oldValue, newValue) {
@@ -22,6 +22,7 @@ class FruitCard extends HTMLElement {
     const name = this.getAttribute('name') || '';
     const price = this.getAttribute('price') || '0';
     const image = this.getAttribute('image') || '';
+    const id = this.getAttribute('id') || '';
     
     this.shadowRoot.innerHTML = `
       <style>
@@ -33,6 +34,7 @@ class FruitCard extends HTMLElement {
           box-shadow: 0 4px 6px rgba(0,0,0,0.1);
           transition: transform 0.3s ease, box-shadow 0.3s ease;
           background: #f5f5f5;
+          cursor: pointer;
         }
         
         .card:hover {
@@ -72,7 +74,7 @@ class FruitCard extends HTMLElement {
           font-size: 0.9rem;
         }
       </style>
-      <div class="card">
+      <div class="card" onclick="window.location.href='/fruit-detail.html?id=${id}'">
         <img class="card-image" src="${image}" alt="${name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2RkZCIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE0IiBmaWxsPSIjOTk5Ij5JbWFnZW4gbm8gZGlzcG9uaWJsZTwvdGV4dD48L3N2Zz4='">
         <div class="fruit-name">${name}</div>
         <div class="fruit-price">€${price}</div>
