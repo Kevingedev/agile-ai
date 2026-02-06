@@ -29,7 +29,7 @@
 ## Tareas
 | Código | Nombre |
 |--------|--------|
-| TK-002-01 | Hacer que el componente cardFruta redireccione a la vista de detalle |
+| TK-002-01 | Hacer que el componente cardFruta redireccione a la vista de detalle  |
 | TK-002-02 | Pasar id del item seleccionado por URL |
 | TK-002-03 | Crear vista de detalle de fruta |
 | TK-002-04 | Obtener el id de la URL para conecta con los datos de la API |
