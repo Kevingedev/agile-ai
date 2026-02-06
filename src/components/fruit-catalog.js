@@ -193,6 +193,7 @@ class FruitCatalog extends HTMLElement {
       <div class="fruit-grid">
         ${this.fruits.map(fruit => `
           <fruit-card 
+            id="${fruit.id}"
             name="${fruit.nombre}" 
             price="${fruit.precio}" 
             image="${fruit.imagen}"

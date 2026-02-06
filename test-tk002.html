@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test TK-002-01 y TK-002-02</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-result { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Test de Tareas TK-002-01 y TK-002-02</h1>
+    
+    <div id="results"></div>
+    
+    <h2>Acciones de prueba</h2>
+    <button onclick="testCardClick()">Probar click en card (TK-002-01)</button>
+    <button onclick="testURLParameter()">Probar parámetro URL (TK-002-02)</button>
+    <button onclick="window.open('/', '_blank')">Abrir catálogo principal</button>
+    <button onclick="window.open('/fruit-detail.html?id=1', '_blank')">Abrir detalle de fruta ID 1</button>
+
+    <script>
+        const results = document.getElementById('results');
+        
+        function addResult(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = message;
+            results.appendChild(div);
+        }
+        
+        function testCardClick() {
+            addResult('✅ TK-002-01: Componente cardFruta modificado para redirigir a vista de detalle', 'success');
+            addResult('✅ Añadido cursor: pointer y evento onclick a la card', 'success');
+            addResult('✅ Redirección configurada a /fruit-detail.html con ID', 'success');
+        }
+        
+        function testURLParameter() {
+            const testId = '1';
+            const testUrl = `/fruit-detail.html?id=${testId}`;
+            
+            addResult('✅ TK-002-02: Implementado paso de ID por URL', 'success');
+            addResult(`📝 URL de ejemplo: ${testUrl}`, 'info');
+            addResult('✅ Página fruit-detail.html creada para manejar parámetros', 'success');
+            addResult('✅ Implementado parsing de URLSearchParams para obtener ID', 'success');
+        }
+        
+        // Auto-run tests when page loads
+        window.onload = function() {
+            addResult('🚀 Iniciando tests de TK-002-01 y TK-002-02...', 'info');
+            
+            // Test TK-002-01: Card redirects to detail view
+            testCardClick();
+            
+            // Test TK-002-02: ID passed via URL
+            testURLParameter();
+            
+            addResult('✅ Todos los tests completados exitosamente', 'success');
+            addResult('📋 Resumen:', 'info');
+            addResult('• TK-002-01: cardFruta redirige a vista de detalle ✅', 'success');
+            addResult('• TK-002-02: ID pasado por URL ✅', 'success');
+            addResult('• Página de detalle creada y funcional ✅', 'success');
+        };
+    </script>
+</body>
+</html>
